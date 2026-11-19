@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nearby prototype</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body><main>
+<div class="row"><span id="st">Offline · idle</span></div>
+<div class="row">
+<button id="gps">Start GPS</button><button id="demo">Demo walk</button>
+</div>
+<div class="row">
+<button id="show" class="p">Show</button><button id="close">Close</button>
+</div>
+<div class="row" id="profs">
+<button class="chip" data-p="auto">Auto</button><button class="chip" data-p="walk">Walk</button><button class="chip" data-p="bike">Bike</button><button class="chip" data-p="car">Car</button>
+</div>
+<div class="row">
+<label>Radius m <input id="iR" type="number" min="50" step="50"></label>
+<label>Refetch m <input id="iD" type="number" min="50" step="50"></label>
+<label>Margin % <input id="iP" type="number" min="0" max="50"></label>
+</div>
+<div id="note" role="status"></div>
+<div class="mut" id="info"></div>
+<canvas id="cv" width="720" height="720" aria-label="Radar of nearby places"></canvas>
+<div class="row">
+<label><input type="checkbox" id="hu" checked> Heading up</label>
+<span id="dctl" hidden>
+<button class="chip" id="dl">↶ 30°</button><button class="chip" id="dr">30° ↷</button>
+<button class="chip" data-v="5">5 km/h</button><button class="chip" data-v="18">18 km/h</button><button class="chip" data-v="50">50 km/h</button>
+</span>
+</div>
+<ul id="list"></ul>
+</main>
+<script src="app.js"></script>
+</body></html>

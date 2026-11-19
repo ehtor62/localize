@@ -1,0 +1,27 @@
+:root{--bg:#eef1ec;--card:#fbfcfa;--ink:#16211d;--mut:#5d6b64;--line:#cdd6cf;--acc:#0f6b5c;--on:#fff;--warn:#b4541a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101614;--card:#18211e;--ink:#e4ece8;--mut:#8fa099;--line:#2a3733;--acc:#5ac8ae;--on:#08130f;--warn:#e0894f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101614;--card:#18211e;--ink:#e4ece8;--mut:#8fa099;--line:#2a3733;--acc:#5ac8ae;--on:#08130f;--warn:#e0894f;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:520px;margin:0 auto;padding:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:10px 14px;min-height:44px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.p{background:var(--acc);color:var(--on);border-color:var(--acc);font-weight:600}
+button.on{border-color:var(--acc);box-shadow:inset 0 0 0 2px var(--acc)}
+.chip{padding:6px 12px;min-height:36px}
+#st{font-weight:600}
+#st.online{color:var(--acc)}
+#note{color:var(--warn);min-height:1.4em}
+.mut{color:var(--mut);font-size:14px}
+label{font-size:14px;color:var(--mut)}
+input[type=number]{width:84px;font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+canvas{width:100%;aspect-ratio:1;background:var(--card);border:1px solid var(--line);border-radius:50%;display:block;margin:8px auto;max-width:360px}
+ul{list-style:none;margin:0;padding:0}
+li{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:6px 0}
+li.hl{border-color:var(--acc)}
+.it{display:flex;align-items:center;gap:12px;padding:10px 12px;width:100%;border:0;background:none;text-align:left;min-height:52px}
+.ar{display:inline-block;width:28px;text-align:center;font-size:22px;color:var(--acc);transition:transform .3s}
+.nm{flex:1}.ds{font-weight:600}
+.dt{padding:0 12px 12px 52px;color:var(--mut);font-size:14px}
