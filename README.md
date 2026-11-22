@@ -13,6 +13,17 @@ Open `index.html` in a browser. No build step or server is needed.
 
 Starting either source stops the other and resets all state: position, history, fetched list, counters, and mode back to idle.
 
+## Deploying
+
+The site is hosted on Vercel at **https://localize-pi.vercel.app**. GPS in mobile browsers only works over HTTPS, so test on a phone through this address rather than a local file.
+
+The GitHub repo is connected to the Vercel project `localize`:
+
+- **Push to `master`** to deploy to production. The live URL updates about a minute after the push.
+- **Push to any other branch** to get a preview deployment with its own URL. Preview URLs require a Vercel login.
+
+There is no build step. Vercel serves `index.html`, `style.css` and `app.js` as they are.
+
 ## Show / Close flow
 
 The app has three modes, shown in the status line at the top:
