@@ -2,7 +2,10 @@
 
 A single-page browser prototype that lists places of interest around your current position and shows them on a radar. It tests how often a mobile app would need to download place lists and details as you move, and how that should change with your speed.
 
-All data is synthetic. On the first position fix the app generates 600 fixed pseudo-random places within 2.5 km. "Downloads" are simulated and counted, with no network requests.
+Places come from Wikipedia: every article with coordinates counts as a place. The app calls the public Wikipedia API directly from the browser, with no API key or server of its own.
+
+- **Language:** the Wikipedia edition follows the browser language, so a `de-CH` phone uses de.wikipedia.org. Anything that isn't a plain language code falls back to English. The info line shows which edition is in use. Smaller editions can have far fewer places; in central Basel German Wikipedia has about three times as many as English.
+- **Categories:** the grey line under a name is Wikipedia's coordinate type (for example `landmark`, `edu`, `river`). Many articles have none.
 
 ## Running it
 
@@ -44,16 +47,30 @@ While online, each position update triggers a list download if any of these is t
 2. You are at least `D` (refetch distance) from the centre of the last download.
 3. The visible radius plus margin no longer fits inside the downloaded area.
 
-Each download covers a circle of radius `R + margin + D` around the current position. That leaves room to move `D` metres before a refetch while the list stays complete.
+Each download covers a circle of radius `R + margin + D` around the current position. That leaves room to move `D` metres before a refetch while the list stays complete. Only one list download runs at a time; position updates during a download don't start another.
 
-Opening a place in the list while online counts one **detail download**. Each place's details are downloaded only once and then cached.
+Wikipedia limits each list download to a 10 km radius and 500 places:
+
+- If `R + margin + D` is over 10 km (only possible with edited settings), the download covers 10 km.
+- If 500 places come back, only the area up to the farthest of them is complete, and the info line says "list capped at 500 places".
+
+In both cases the app refetches only after you've moved `D` metres, never on every position update.
+
+Opening a place in the list while online counts one **detail download**: the article's introduction, as plain text, with a link to the full article. Each place's details are downloaded only once and then cached until you restart GPS or the demo walk.
+
+### When a download fails
+
+Downloads time out after 15 seconds.
+
+- **List download fails:** the note says "List download failed (…). Tap Show to retry." The app leaves online mode, keeping the previous list in `closed` mode if there was one, and doesn't retry by itself.
+- **Detail download fails:** the detail panel says so. Tap the place to close it and tap again to retry.
 
 ### Close
 
 **Close** only acts in `online` mode. It switches to `closed` and stops all downloads. The list and radar keep updating from the last downloaded area as you move.
 
 - If you leave the area covered by the last download, the note says "Outside the downloaded area. Press Show to update."
-- Opening a place shows its details only if they were downloaded while online. Otherwise the detail panel is empty.
+- Opening a place shows its details only if they were downloaded while online. Otherwise the panel says the details weren't downloaded.
 
 Press **Show** again to go back online. The next update downloads a fresh list if needed.
 

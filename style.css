@@ -24,4 +24,5 @@ li.hl{border-color:var(--acc)}
 .it{display:flex;align-items:center;gap:12px;padding:10px 12px;width:100%;border:0;background:none;text-align:left;min-height:52px}
 .ar{display:inline-block;width:28px;text-align:center;font-size:22px;color:var(--acc);transition:transform .3s}
 .nm{flex:1}.ds{font-weight:600}
-.dt{padding:0 12px 12px 52px;color:var(--mut);font-size:14px}
+.dt{padding:0 12px 12px 52px;color:var(--mut);font-size:14px;white-space:pre-line}
+.dt a{color:var(--acc)}
